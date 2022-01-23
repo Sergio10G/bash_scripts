@@ -1,9 +1,12 @@
 #!/bin/bash
 
+# Change the destination folder absolute path here.
+dest_folder="/home/testFolder"
+cur_folder_name=${PWD##*/}
+
 cp_files_to_folder() {
-	cur_folder=${PWD##*/}
-	[ -d "/path/to/destination/folder/" ] && echo "Destination folder exists!" || mkdir "/path/to/destination/folder/"
-	cp -r ../$cur_folder /path/to/destination/folder/$cur_folder/ && echo "$cur_folder succesfully copied in /path/to/destination/folder/$cur_folder"
+	[ -d "$dest_folder" ] && echo "$dest_folder exists!" || mkdir "$dest_folder"
+	cp -r ../$cur_folder_name $dest_folder/$cur_folder_name/ && echo "$cur_folder_name succesfully copied in $dest_folder/$cur_folder_name"
 }
 
 cp_files_to_folder
