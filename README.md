@@ -9,4 +9,4 @@ Some bash scripts and one-liners that I have found useful in some way at some po
 
 **start\_xampp.sh**: Stops apache service and starts lampp.
 
-**stop\_xampp.sh**: Stops xampp and re-starts apache service.
+**stop\_xampp.sh**: Stops lampp and re-starts apache service.
