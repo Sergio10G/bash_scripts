@@ -1,0 +1,24 @@
+#!/bin/bash# 
+# install ohMyZsh
+sudo sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+# install neovim
+sudo apt install neovim
+# install node.js
+curl -fsSL https://deb.nodesource.com/setup_lts.x | sudo -E bash - &&\
+sudo apt-get install -y nodejs
+# setup init.vim 
+cp ./config_files/init.vim ~/.config/nvim
+# install vim-plug
+sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs \
+       https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
+# install plugins inside init.vim
+:PlugInstall
+# Symlink plugged folder to nvim config folder
+ln -s ~/.local/share/nvim/plugged ~/.config/nvim/
+# build coc.nvim
+cd ~/.config/nvim/plugged/coc.nvim
+npm ci
+# install coc-clangd
+:CocInstall coc-clangd
+# permissions on coc-settings.json?
+:CocCommand clangd.install 
